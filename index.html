@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Financeiro - Setembro de 2024</title>
+    <title>Dashboard Financeiro - Outubro de 2024</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -127,6 +127,10 @@
             justify-content: space-around;
             margin-top: 20px;
         }
+        .nav-buttons button {
+            flex: 1;
+            margin: 0 5px;
+        }
         @media (max-width: 768px) {
             .summary {
                 flex-direction: column;
@@ -141,10 +145,16 @@
 <body>
 
 <header>
-    ORIGETECOS - Setembro de 2024
+    ORIGETECOS - Outubro de 2024
 </header>
 
 <div class="container">
+    <div class="nav-buttons">
+        <button class="btn" onclick="trocarSlide(0)">Resumo Financeiro</button>
+        <button class="btn" onclick="trocarSlide(1)">Gráfico de Saldo</button>
+        <button class="btn" onclick="trocarSlide(2)">Resumo de Transações</button>
+    </div>
+
     <!-- Slide 1: Resumo Financeiro -->
     <div class="slide active">
         <div class="slide-content">
@@ -152,15 +162,15 @@
             <div class="summary">
                 <div>
                     <h3>Entradas</h3>
-                    <p class="entrada">R$ 130,00</p>
+                    <p class="entrada">R$ 205,00</p>
                 </div>
                 <div>
                     <h3>Saídas</h3>
-                    <p class="saida">R$ 116,47</p>
+                    <p class="saida">R$ 171,92</p>
                 </div>
                 <div>
                     <h3>Saldo Final</h3>
-                    <p>R$ 13,53</p>
+                    <p>R$ 33,08</p>
                 </div>
             </div>
         </div>
@@ -175,9 +185,9 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Slide 3: Resumo de Transações -->
-    <div class="slide" id="resumo-transacoes">
+    <div class="slide">
         <h2>Resumo de Transações</h2>
         <div class="table-container">
             <table>
@@ -191,168 +201,89 @@
                         <th>SUBTOTAL</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>30/08/2024</td>
-                        <td class="entrada">ENTRADA</td>
-                        <td>R$ 15,00</td>
-                        <td>RECEBIMENTO CAIXA</td>
-                        <td>CATI</td>
-                        <td>R$ 15,00</td>
-                    </tr>
-                    <tr>
-                        <td>30/08/2024</td>
-                        <td class="entrada">ENTRADA</td>
-                        <td>R$ 15,00</td>
-                        <td>RECEBIMENTO CAIXA</td>
-                        <td>MELIANTE</td>
-                        <td>R$ 30,00</td>
-                    </tr>
-                    <tr>
-                        <td>02/09/2024</td>
-                        <td class="entrada">ENTRADA</td>
-                        <td>R$ 15,00</td>
-                        <td>RECEBIMENTO CAIXA</td>
-                        <td>CRIANÇA S/ESPERANÇA</td>
-                        <td>R$ 45,00</td>
-                    </tr>
-                    <tr>
-                        <td>02/09/2024</td>
-                        <td class="entrada">ENTRADA</td>
-                        <td>R$ 15,00</td>
-                        <td>RECEBIMENTO CAIXA</td>
-                        <td>SUJIRO</td>
-                        <td>R$ 60,00</td>
-                    </tr>
-                    <tr>
-                        <td>02/09/2024</td>
-                        <td class="entrada">ENTRADA</td>
-                        <td>R$ 15,00</td>
-                        <td>RECEBIMENTO CAIXA</td>
-                        <td>RAGNAROK</td>
-                        <td>R$ 75,00</td>
-                    </tr>
-                    <tr>
-                        <td>02/09/2024</td>
-                        <td class="entrada">ENTRADA</td>
-                        <td>R$ 15,00</td>
-                        <td>RECEBIMENTO CAIXA</td>
-                        <td>GHOST</td>
-                        <td>R$ 90,00</td>
-                    </tr>
-                    <tr>
-                        <td>02/09/2024</td>
-                        <td class="saida">SAÍDA</td>
-                        <td>R$ 16,98</td>
-                        <td>CAFÉ MELITA TRADICIONAL</td>
-                        <td>HIPERMAIS</td>
-                        <td>R$ 73,02</td>
-                    </tr>
-                    <tr>
-                        <td>02/09/2024</td>
-                        <td class="saida">SAÍDA</td>
-                        <td>R$ 16,98</td>
-                        <td>CAFÉ MELITA TRADICIONAL</td>
-                        <td>HIPERMAIS</td>
-                        <td>R$ 56,04</td>
-                    </tr>
-                    <tr>
-                        <td>02/09/2024</td>
-                        <td class="saida">SAÍDA</td>
-                        <td>R$ 3,79</td>
-                        <td>PAPEL FILTRO</td>
-                        <td>HIPERMAIS</td>
-                        <td>R$ 52,25</td>
-                    </tr>
-                    <tr>
-                        <td>02/09/2024</td>
-                        <td class="saida">SAÍDA</td>
-                        <td>R$ 8,98</td>
-                        <td>COADOR MELITA</td>
-                        <td>HIPERMAIS</td>
-                        <td>R$ 43,27</td>
-                    </tr>
-                    <tr>
-                        <td>02/09/2024</td>
-                        <td class="saida">SAÍDA</td>
-                        <td>R$ 16,99</td>
-                        <td>LEITE EM PÓ</td>
-                        <td>HIPERMAIS</td>
-                        <td>R$ 26,28</td>
-                    </tr>
-                    <tr>
-                        <td>03/09/2024</td>
-                        <td class="entrada">ENTRADA</td>
-                        <td>R$ 40,00</td>
-                        <td>OFERTA</td>
-                        <td>DOUGLAS</td>
-                        <td>R$ 66,28</td>
-                    </tr>
-                    <tr>
-                        <td>12/09/2024</td>
-                        <td class="saida">SAÍDA</td>
-                        <td>R$ 16,99</td>
-                        <td>LEITE EM PÓ</td>
-                        <td>CONDOR</td>
-                        <td>R$ 49,29</td>
-                    </tr>
-                    </tr>
-                        <td>24/09/2024</td>
-                        <td class="saida">SAÍDA</td>
-                        <td>R$ 18,98</td>
-                        <td>CAFÉ DAMASCO TRADICIONAL</td>
-                        <td>GIASSI</td>
-                        <td>R$ 30,31</td>
-                    </tr>
-                    </tr>
-                        <td>24/09/2024</td>
-                        <td class="saida">SAÍDA</td>
-                        <td>R$ 16,78</td>
-                        <td>LEITE EM PÓ</td>
-                        <td>GIASSI</td>
-                        <td>R$ 13,53</td>
-                    </tr>
+                <tbody id="transacoes-tbody">
+                    <!-- As transações serão carregadas aqui -->
                 </tbody>
             </table>
         </div>
     </div>
-   
-
-
-    <!-- Navegação entre slides -->
-    <div class="nav-buttons">
-        <button class="btn" onclick="showSlide(0)">Resumo</button>
-        <button class="btn" onclick="showSlide(1)">Gráfico de Saldo</button>
-        <button class="btn" onclick="showSlide(2)">Transações</button>
-    </div>
 </div>
 
-<footer>
-    © Anderson Borba
-</footer>
-
+<!-- Inclua as bibliotecas Chart.js e o plugin Data Labels -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
 <script>
-    function showSlide(index) {
-        const slides = document.querySelectorAll('.slide');
-        slides.forEach(slide => slide.classList.remove('active'));
-        slides[index].classList.add('active');
+// Dados das transações (pode ser carregado dinamicamente)
+const transacoes = [
+    { data: "30/08/2024", tipo: "ENTRADA", valor: 15.00, descricao: "MENSALIDADE", observacao: "CATI", subtotal: 15.00 },
+    { data: "30/08/2024", tipo: "ENTRADA", valor: 15.00, descricao: "MENSALIDADE", observacao: "MELIANTE", subtotal: 30.00 },
+    { data: "02/09/2024", tipo: "ENTRADA", valor: 15.00, descricao: "MENSALIDADE", observacao: "CRIANÇA S/ESPERANÇA", subtotal: 45.00 },
+    { data: "02/09/2024", tipo: "ENTRADA", valor: 15.00, descricao: "MENSALIDADE", observacao: "SUJIRO", subtotal: 60.00 },
+    { data: "02/09/2024", tipo: "ENTRADA", valor: 15.00, descricao: "MENSALIDADE", observacao: "RAGNAROK", subtotal: 75.00 },
+    { data: "02/09/2024", tipo: "ENTRADA", valor: 15.00, descricao: "MENSALIDADE", observacao: "GHOST", subtotal: 90.00 },
+    { data: "02/09/2024", tipo: "SAÍDA", valor: 16.98, descricao: "CAFÉ MELITA TRADICIONAL", observacao: "HIPERMAIS", subtotal: 73.02 },
+    { data: "02/09/2024", tipo: "SAÍDA", valor: 16.98, descricao: "CAFÉ MELITA TRADICIONAL", observacao: "HIPERMAIS", subtotal: 56.04 },
+    { data: "02/09/2024", tipo: "SAÍDA", valor: 3.79, descricao: "PAPEL FILTRO", observacao: "HIPERMAIS", subtotal: 52.25 },
+    { data: "02/09/2024", tipo: "SAÍDA", valor: 8.98, descricao: "COADOR MELITA", observacao: "HIPERMAIS", subtotal: 43.27 },
+    { data: "02/09/2024", tipo: "SAÍDA", valor: 16.99, descricao: "LEITE EM PÓ", observacao: "HIPERMAIS", subtotal: 26.28 },
+    { data: "03/09/2024", tipo: "ENTRADA", valor: 40.00, descricao: "OFERTA", observacao: "DOUGLAS", subtotal: 66.28 },
+    { data: "12/09/2024", tipo: "SAÍDA", valor: 16.99, descricao: "LEITE EM PÓ", observacao: "CONDOR", subtotal: 49.29 },
+    { data: "24/09/2024", tipo: "SAÍDA", valor: 18.98, descricao: "CAFÉ DAMASCO TRADICIONAL", observacao: "GIASSI", subtotal: 30.31 },
+    { data: "24/09/2024", tipo: "SAÍDA", valor: 16.78, descricao: "LEITE EM PÓ", observacao: "GIASSI", subtotal: 13.53 },
+    { data: "03/10/2024", tipo: "ENTRADA", valor: 15.00, descricao: "MENSALIDADE", observacao: "GOUGLAS", subtotal: 28.53 },
+    { data: "03/10/2024", tipo: "ENTRADA", valor: 15.00, descricao: "MENSALIDADE", observacao: "RAGNAROK", subtotal: 43.53 },
+    { data: "03/10/2024", tipo: "ENTRADA", valor: 15.00, descricao: "MENSALIDADE", observacao: "SUJIRO", subtotal: 58.53 },
+    { data: "03/10/2024", tipo: "ENTRADA", valor: 15.00, descricao: "MENSALIDADE", observacao: "CATI", subtotal: 73.53 },
+    { data: "03/10/2024", tipo: "ENTRADA", valor: 15.00, descricao: "MENSALIDADE", observacao: "GHOST", subtotal: 88.53 },
+    { data: "06/10/2024", tipo: "SAÍDA", valor: 13.98, descricao: "LEITE EM PÓ", observacao: "HIPERMAIS", subtotal: 74.55 },
+    { data: "06/10/2024", tipo: "SAÍDA", valor: 3.49, descricao: "PAPEL FILTRO", observacao: "HIPERMAIS", subtotal: 71.06 },
+    { data: "06/10/2024", tipo: "SAÍDA", valor: 18.99, descricao: "CAFÉ MELITA TRADICIONAL", observacao: "HIPERMAIS", subtotal: 52.07 },
+    { data: "06/10/2024", tipo: "SAÍDA", valor: 18.99, descricao: "CAFÉ MELITA TRADICIONAL", observacao: "HIPERMAIS", subtotal: 33.08 }
+];
+
+
+    // Função para gerar a tabela de transações
+    function gerarTabelaTransacoes() {
+        const tbody = document.getElementById('transacoes-tbody');
+        transacoes.forEach(transacao => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${transacao.data}</td>
+                <td>${transacao.tipo}</td>
+                <td class="${transacao.tipo === 'ENTRADA' ? 'entrada' : 'saida'}">R$ ${transacao.valor.toFixed(2)}</td>
+                <td>${transacao.descricao}</td>
+                <td>${transacao.observacao}</td>
+                <td>R$ ${transacao.subtotal.toFixed(2)}</td>
+            `;
+            tbody.appendChild(tr);
+        });
     }
 
+    // Função para trocar entre os slides
+    function trocarSlide(index) {
+        const slides = document.querySelectorAll('.slide');
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+    }
+
+    // Gráfico de Saldo
     const ctx = document.getElementById('saldoChart').getContext('2d');
     const saldoChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Entradas', 'Saídas', 'Saldo Final'],
+            labels: ['Entradas', 'Saídas', 'Saldo'],
             datasets: [{
-                label: 'Valores (R$)',
-                data: [130.00, 80.71, 49.29],
-                backgroundColor: ['#4CAF50', '#F44336', '#2196F3'],
-                borderColor: ['#388E3C', '#D32F2F', '#1976D2'],
+                label: 'Valor',
+                data: [205, 171.92, 33.08],
+                backgroundColor: ['rgba(0, 128, 0, 0.5)', 'rgba(255, 0, 0, 0.5)', 'rgba(0, 0, 255, 0.5)'],
+                borderColor: ['rgba(0, 128, 0, 1)', 'rgba(255, 0, 0, 1)', 'rgba(0, 0, 255, 1)'],
                 borderWidth: 1
             }]
         },
         options: {
+            responsive: true,
             scales: {
                 y: {
                     beginAtZero: true
@@ -360,7 +291,13 @@
             }
         }
     });
+
+    // Chama a função para gerar a tabela de transações
+    gerarTabelaTransacoes();
 </script>
 
+<footer>
+    &copy; Anderson Borba.
+</footer>
 </body>
 </html>
