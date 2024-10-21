@@ -156,35 +156,36 @@
     </div>
 
     <!-- Slide 1: Resumo Financeiro -->
-    <div class="slide active">
-        <div class="slide-content">
-            <h2>Resumo Financeiro</h2>
-            <div class="summary">
-                <div>
-                    <h3>Entradas</h3>
-                    <p class="entrada">R$ 205,00</p>
-                </div>
-                <div>
-                    <h3>Saídas</h3>
-                    <p class="saida">R$ 171,92</p>
-                </div>
-                <div>
-                    <h3>Saldo Final</h3>
-                    <p>R$ 33,08</p>
-                </div>
+<div class="slide active">
+    <div class="slide-content">
+        <h2>Resumo Financeiro</h2>
+        <div class="summary">
+            <div>
+                <h3>Entradas</h3>
+                <p class="entrada">R$ 205,00</p>
+            </div>
+            <div>
+                <h3>Saídas</h3>
+                <p class="saida">R$ 204,92</p>
+            </div>
+            <div>
+                <h3>Saldo Final</h3>
+                <p class="saldo">R$ 0,08</p>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Slide 2: Gráfico de Saldo -->
-    <div class="slide">
-        <div class="slide-content">
-            <h2>Gráfico de Saldo</h2>
-            <div class="chart-container">
-                <canvas id="saldoChart"></canvas>
-            </div>
+<!-- Slide 2: Gráfico de Saldo -->
+<div class="slide">
+    <div class="slide-content">
+        <h2>Gráfico de Saldo</h2>
+        <div class="chart-container">
+            <canvas id="saldoChart"></canvas>
         </div>
     </div>
+</div>
+
 
     <!-- Slide 3: Resumo de Transações -->
     <div class="slide">
@@ -239,7 +240,9 @@ const transacoes = [
     { data: "06/10/2024", tipo: "SAÍDA", valor: 13.98, descricao: "LEITE EM PÓ", observacao: "HIPERMAIS", subtotal: 74.55 },
     { data: "06/10/2024", tipo: "SAÍDA", valor: 3.49, descricao: "PAPEL FILTRO", observacao: "HIPERMAIS", subtotal: 71.06 },
     { data: "06/10/2024", tipo: "SAÍDA", valor: 18.99, descricao: "CAFÉ MELITA TRADICIONAL", observacao: "HIPERMAIS", subtotal: 52.07 },
-    { data: "06/10/2024", tipo: "SAÍDA", valor: 18.99, descricao: "CAFÉ MELITA TRADICIONAL", observacao: "HIPERMAIS", subtotal: 33.08 }
+    { data: "06/10/2024", tipo: "SAÍDA", valor: 18.99, descricao: "CAFÉ MELITA TRADICIONAL", observacao: "HIPERMAIS", subtotal: 33.08 },
+    { data: "10/10/2024", tipo: "SAÍDA", valor: 6.00, descricao: "BOLACHA SALGADA", observacao: "HIPERMAIS", subtotal: 27.08 },
+    { data: "18/10/2024", tipo: "SAÍDA", valor: 27.00, descricao: "COQUETEL SORTIDO", observacao: "MAMMY", subtotal: 0.08 }
 ];
 
 
@@ -268,29 +271,88 @@ const transacoes = [
         });
     }
 
-    // Gráfico de Saldo
+    let saldoChart; // Variável global para o gráfico
+
+// Função para inicializar o gráfico
+function inicializarGrafico() {
     const ctx = document.getElementById('saldoChart').getContext('2d');
-    const saldoChart = new Chart(ctx, {
+    saldoChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['Entradas', 'Saídas', 'Saldo'],
             datasets: [{
-                label: 'Valor',
-                data: [205, 171.92, 33.08],
-                backgroundColor: ['rgba(0, 128, 0, 0.5)', 'rgba(255, 0, 0, 0.5)', 'rgba(0, 0, 255, 0.5)'],
-                borderColor: ['rgba(0, 128, 0, 1)', 'rgba(255, 0, 0, 1)', 'rgba(0, 0, 255, 1)'],
+                label: 'Valor (R$)',
+                data: [205, 204.92, 0.08], // Valores iniciais
+                backgroundColor: [
+                    'rgba(0, 128, 0, 0.5)',  // Verde para Entradas
+                    'rgba(255, 0, 0, 0.5)',  // Vermelho para Saídas
+                    'rgba(0, 0, 255, 0.5)'   // Azul para Saldo
+                ],
+                borderColor: [
+                    'rgba(0, 128, 0, 1)',
+                    'rgba(255, 0, 0, 1)',
+                    'rgba(0, 0, 255, 1)'
+                ],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            plugins: {
+                datalabels: {
+                    anchor: 'end',
+                    align: 'top',
+                    formatter: (value) => `R$ ${value.toFixed(2)}`,
+                    color: '#000',
+                    font: {
+                        weight: 'bold',
+                        size: 14
+                    }
+                }
+            },
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        callback: (value) => `R$ ${value}`
+                    }
                 }
             }
         }
     });
+}
+
+// Função para atualizar os dados do gráfico
+function atualizarGrafico() {
+    const entrada = parseFloat(document.querySelector('.entrada').textContent.replace('R$', '').replace(',', '.'));
+    const saida = parseFloat(document.querySelector('.saida').textContent.replace('R$', '').replace(',', '.'));
+    const saldo = parseFloat(document.querySelector('.saldo').textContent.replace('R$', '').replace(',', '.'));
+
+    saldoChart.data.datasets[0].data = [entrada, saida, saldo];
+    saldoChart.update();
+}
+
+// Função para alternar entre slides
+function trocarSlide(slideIndex) {
+    const slides = document.querySelectorAll('.slide');
+    slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === slideIndex);
+    });
+
+    // Atualiza o gráfico ao exibir o slide 2
+    if (slideIndex === 1) {
+        atualizarGrafico();
+    }
+}
+
+// Inicializa o gráfico ao carregar a página
+window.onload = inicializarGrafico;
+
+// Observador de mudanças nos valores do slide 1
+const observer = new MutationObserver(() => atualizarGrafico());
+const resumoFinanceiro = document.querySelector('.summary');
+observer.observe(resumoFinanceiro, { childList: true, subtree: true });
+
 
     // Chama a função para gerar a tabela de transações
     gerarTabelaTransacoes();
